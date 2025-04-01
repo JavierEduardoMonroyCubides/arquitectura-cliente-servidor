@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import model.Agencias;
 import model.Compania;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmCompania extends JFrame {
 
@@ -24,6 +26,8 @@ public class FrmCompania extends JFrame {
 	private JTextField txtFechaCreacion;
 	private JTextField txtCorreo;
 	private JTextField txtWeb;
+	Compania cr = new Compania();
+	private JTextField txtIdCompania;
 	/**
 	 * Launch the application.
 	 */
@@ -88,7 +92,7 @@ public class FrmCompania extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				Compania cr = new Compania();
+				
 				cr.create(txtRazonSocial.getText(), txtDireccion.getText(), txtTelefono.getText(), txtFechaCreacion.getText(), txtCorreo.getText(),txtWeb.getText());
 				
 			}
@@ -119,6 +123,33 @@ public class FrmCompania extends JFrame {
 		JLabel lblIdcompania = new JLabel("web:");
 		lblIdcompania.setBounds(76, 191, 60, 14);
 		contentPane.add(lblIdcompania);
+		
+		JButton txtEliminar = new JButton("eliminar");
+		txtEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cr.delete(Integer.parseInt(txtIdCompania.getText()));
+			}
+		});
+		txtEliminar.setBounds(261, 125, 110, 29);
+		contentPane.add(txtEliminar);
+		
+		txtIdCompania = new JTextField();
+		txtIdCompania.setColumns(10);
+		txtIdCompania.setBounds(108, 219, 86, 20);
+		contentPane.add(txtIdCompania);
+		
+		JLabel lblIdcompania_1 = new JLabel("IdCompania:");
+		lblIdcompania_1.setBounds(38, 222, 74, 14);
+		contentPane.add(lblIdcompania_1);
+		
+		JButton btnUpdate = new JButton("update");
+		btnUpdate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdCompania.getText()),txtRazonSocial.getText(), txtDireccion.getText(), txtTelefono.getText(), txtFechaCreacion.getText(), txtCorreo.getText(),txtWeb.getText());
+			}
+		});
+		btnUpdate.setBounds(261, 176, 110, 29);
+		contentPane.add(btnUpdate);
 	}
-
 }

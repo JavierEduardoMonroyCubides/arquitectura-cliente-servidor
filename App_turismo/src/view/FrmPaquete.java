@@ -34,6 +34,8 @@ public class FrmPaquete extends JFrame {
 	private JTextField txtIdCliente;
 	private JTextField txtIdMedio;
 	private JTextField txtPrecio;
+	private JTextField txtCodigo;
+	Paquete cr = new Paquete();
 	/**
 	 * Launch the application.
 	 */
@@ -93,18 +95,18 @@ public class FrmPaquete extends JFrame {
 		txtFechaEjecucion.setBounds(108, 198, 86, 20);
 		contentPane.add(txtFechaEjecucion);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("guardar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Paquete cr = new Paquete();
+				
 				cr.create(Integer.parseInt(txtIdDestino.getText()), Integer.parseInt(txtIdOrigen.getText()), txtFechaVenta.getText(), txtHoraVenta.getText(), txtHoraSalida.getText(),
 						txtFechaEjecucion.getText(), txtObservaciones.getText(), Integer.parseInt(txtIdAgencia.getText()), Integer.parseInt(txtMatricula.getText()), Integer.parseInt(txtIdPromotor.getText()), Integer.parseInt(txtIdCliente.getText()),
 						Integer.parseInt(txtIdMedio.getText()), txtPrecio.getText());
 				
 			}
 		});
-		btnNewButton.setBounds(267, 226, 108, 26);
+		btnNewButton.setBounds(299, 227, 86, 24);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("iddestino:");
@@ -193,6 +195,36 @@ public class FrmPaquete extends JFrame {
 		txtPrecio.setColumns(10);
 		txtPrecio.setBounds(107, 229, 86, 20);
 		contentPane.add(txtPrecio);
+		
+		JLabel lblCodigo = new JLabel("Codigo:");
+		lblCodigo.setBounds(22, 14, 79, 14);
+		contentPane.add(lblCodigo);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setColumns(10);
+		txtCodigo.setBounds(108, 11, 86, 20);
+		contentPane.add(txtCodigo);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cr.delete(Integer.parseInt(txtCodigo.getText()));
+			}
+		});
+		btnEliminar.setBounds(267, 10, 108, 26);
+		contentPane.add(btnEliminar);
+		
+		JButton btnUpdate = new JButton("update");
+		btnUpdate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtCodigo.getText()) ,Integer.parseInt(txtIdDestino.getText()), Integer.parseInt(txtIdOrigen.getText()), txtFechaVenta.getText(), txtHoraVenta.getText(), txtHoraSalida.getText(),
+						txtFechaEjecucion.getText(), txtObservaciones.getText(), Integer.parseInt(txtIdAgencia.getText()), Integer.parseInt(txtMatricula.getText()), Integer.parseInt(txtIdPromotor.getText()), Integer.parseInt(txtIdCliente.getText()),
+						Integer.parseInt(txtIdMedio.getText()), txtPrecio.getText());
+			}
+		});
+		btnUpdate.setBounds(210, 229, 79, 21);
+		contentPane.add(btnUpdate);
 	}
 
 }

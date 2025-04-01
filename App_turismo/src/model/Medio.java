@@ -13,6 +13,7 @@ public class Medio {
 	
 	public String nombre;
 	public int idtipomedio;
+	public int idmedio;
 	Conexion conector = new Conexion();
 	
 	public Medio(String nombre, int idtipomedio) {
@@ -61,4 +62,65 @@ public class Medio {
 				System.out.println(e.getMessage());
 			}
 		}
+	
+	public void delete(int idmedio) {
+		
+		
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+		
+		String script = "delete from tblmedio where idmedio  = ?";
+		
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion 
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+			
+			//parametrizar el campo
+			pst.setInt(1, idmedio);
+			
+			// confirmar la operacion
+			int resp = JOptionPane.showConfirmDialog(null, "¿desea eliminar esta fila?");
+			
+			if(resp == JOptionPane.OK_OPTION) {
+				pst.executeUpdate();
+				JOptionPane.showConfirmDialog(null, "fila eliminada");
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void update(int idmedio ,String nombre, int idtipomedio) {
+		
+		
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+		
+		String script = "update tblmedio set nombre = ?, idtipomedio = ? where idmedio = ?;";
+		
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+			
+			//parametrizar el campo
+		
+			pst.setString(1, nombre);
+			pst.setInt(2, idtipomedio);
+			pst.setInt(3, idmedio);
+			
+			// confirmar la operacion
+			int resp = JOptionPane.showConfirmDialog(null, "¿desea actualizar esta fila?");
+			
+			if(resp == JOptionPane.OK_OPTION) {
+				pst.executeUpdate();
+				JOptionPane.showConfirmDialog(null, "fila actualizada");
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

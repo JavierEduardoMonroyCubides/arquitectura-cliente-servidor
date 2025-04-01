@@ -20,6 +20,8 @@ public class FrmTipoTransporte extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtObservacion;
+	TipoTransporte cr = new TipoTransporte();
+	private JTextField txtIdTipoTransporte;
 	/**
 	 * Launch the application.
 	 */
@@ -40,6 +42,7 @@ public class FrmTipoTransporte extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmTipoTransporte() {
+		setTitle("tipo de transporte");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -58,19 +61,19 @@ public class FrmTipoTransporte extends JFrame {
 		txtObservacion.setBounds(108, 105, 86, 20);
 		contentPane.add(txtObservacion);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("guardar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TipoTransporte cr = new TipoTransporte();
+				
 			
 				cr.create(txtNombre.getText(), txtObservacion.getText());
 			}
 		});
-		btnNewButton.setBounds(258, 58, 110, 52);
+		btnNewButton.setBounds(258, 58, 95, 38);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblAgencia = new JLabel("tipo de transporte");
+		JLabel lblAgencia = new JLabel("");
 		lblAgencia.setBounds(179, 6, 118, 26);
 		contentPane.add(lblAgencia);
 		
@@ -81,6 +84,25 @@ public class FrmTipoTransporte extends JFrame {
 		JLabel lblCorreo = new JLabel("observacion:");
 		lblCorreo.setBounds(38, 108, 75, 14);
 		contentPane.add(lblCorreo);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("IdTipoTransporte:");
+		lblNewLabel_1_1.setBounds(10, 139, 89, 14);
+		contentPane.add(lblNewLabel_1_1);
+		
+		txtIdTipoTransporte = new JTextField();
+		txtIdTipoTransporte.setColumns(10);
+		txtIdTipoTransporte.setBounds(108, 136, 86, 20);
+		contentPane.add(txtIdTipoTransporte);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.delete(Integer.parseInt(txtIdTipoTransporte.getText()));
+			}
+		});
+		btnEliminar.setBounds(258, 104, 95, 38);
+		contentPane.add(btnEliminar);
 	}
 
 }

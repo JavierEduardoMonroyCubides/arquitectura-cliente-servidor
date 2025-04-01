@@ -20,6 +20,8 @@ public class FrmTipoMedio extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtObservacion;
+	TipoMedio cr = new TipoMedio();
+	private JTextField txtIdTipoMedio;
 	/**
 	 * Launch the application.
 	 */
@@ -54,11 +56,11 @@ public class FrmTipoMedio extends JFrame {
 		txtNombre.setBounds(108, 74, 86, 20);
 		contentPane.add(txtNombre);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("guardar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TipoMedio cr = new TipoMedio();
+				
 				cr.create(txtNombre.getText(), txtObservacion.getText());					
 				
 			}
@@ -78,5 +80,24 @@ public class FrmTipoMedio extends JFrame {
 		txtObservacion.setColumns(10);
 		txtObservacion.setBounds(108, 105, 86, 20);
 		contentPane.add(txtObservacion);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("IdTipoMedio:");
+		lblNewLabel_1_2.setBounds(34, 133, 90, 14);
+		contentPane.add(lblNewLabel_1_2);
+		
+		txtIdTipoMedio = new JTextField();
+		txtIdTipoMedio.setColumns(10);
+		txtIdTipoMedio.setBounds(108, 133, 86, 20);
+		contentPane.add(txtIdTipoMedio);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.delete(Integer.parseInt(txtIdTipoMedio.getText()));
+			}
+		});
+		btnEliminar.setBounds(237, 111, 108, 31);
+		contentPane.add(btnEliminar);
 	}
 }

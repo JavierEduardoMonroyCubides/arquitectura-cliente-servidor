@@ -13,6 +13,9 @@ import javax.swing.border.EmptyBorder;
 
 import model.Agencias;
 import model.Cliente;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmCliente extends JFrame {
 
@@ -29,6 +32,8 @@ public class FrmCliente extends JFrame {
 	private JTextField txtEps;
 	private JTextField txtFechaNacimiento;
 	private JTextField txtTipoDocumento;
+	Cliente cr = new Cliente();
+	private JTextField txtIdCliente;
 	/**
 	 * Launch the application.
 	 */
@@ -92,13 +97,13 @@ contentPane.setLayout(null);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Cliente cr = new Cliente();
+				
 				cr.create(Integer.parseInt(txtTipoDocumento.getText()), Integer.parseInt(txtDocumento.getText()), txtNombre.getText(), txtApellido.getText(), txtEps.getText(), txtAlergias.getText(),
 						txtFechaNacimiento.getText(), txtCorreo.getText(), txtEstadoCivil.getText(), txtDireccion.getText(), txtTelefonico.getText());
 				
 			}
 		});
-		btnNewButton.setBounds(284, 204, 112, 34);
+		btnNewButton.setBounds(261, 204, 71, 35);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
@@ -169,6 +174,35 @@ contentPane.setLayout(null);
 		JLabel lblEstadocivil = new JLabel("estadocivil:");
 		lblEstadocivil.setBounds(205, 156, 62, 14);
 		contentPane.add(lblEstadocivil);
+		
+		JButton btnEliminar = new JButton("");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cr.delete(Integer.parseInt(txtIdCliente.getText()));
+			}
+		});
+		btnEliminar.setIcon(new ImageIcon("C:\\Users\\APRENDIZ\\Downloads\\8666597_trash_2_icon (1).png"));
+		btnEliminar.setBounds(212, 204, 39, 35);
+		contentPane.add(btnEliminar);
+		
+		txtIdCliente = new JTextField();
+		txtIdCliente.setColumns(10);
+		txtIdCliente.setBounds(112, 218, 86, 20);
+		contentPane.add(txtIdCliente);
+		
+		JLabel lblIdcliente = new JLabel("IdCliente:");
+		lblIdcliente.setBounds(42, 224, 62, 14);
+		contentPane.add(lblIdcliente);
+		
+		JButton btnActualzar = new JButton("actualzar");
+		btnActualzar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdCliente.getText()),Integer.parseInt(txtTipoDocumento.getText()), Integer.parseInt(txtDocumento.getText()), txtNombre.getText(), txtApellido.getText(), txtEps.getText(), txtAlergias.getText(),
+						txtFechaNacimiento.getText(), txtCorreo.getText(), txtEstadoCivil.getText(), txtDireccion.getText(), txtTelefonico.getText());
+			}
+		});
+		btnActualzar.setBounds(342, 204, 82, 35);
+		contentPane.add(btnActualzar);
 	}
-
 }

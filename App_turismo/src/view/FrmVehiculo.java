@@ -23,9 +23,10 @@ public class FrmVehiculo extends JFrame {
 	private JTextField txtMarca;
 	private JTextField txtPuestos;
 	private JTextField txtModelo;
-	private JTextField txtNumeroPromotor;
+	private JTextField txtNumeroMotor;
 	private JTextField txtCategoria;
 	private JTextField txtIdTipo;
+	Vehiculo cr = new Vehiculo();
 	/**
 	 * Launch the application.
 	 */
@@ -80,10 +81,10 @@ public class FrmVehiculo extends JFrame {
 		txtModelo.setBounds(108, 167, 86, 20);
 		contentPane.add(txtModelo);
 		
-		txtNumeroPromotor = new JTextField();
-		txtNumeroPromotor.setColumns(10);
-		txtNumeroPromotor.setBounds(108, 198, 86, 20);
-		contentPane.add(txtNumeroPromotor);
+		txtNumeroMotor = new JTextField();
+		txtNumeroMotor.setColumns(10);
+		txtNumeroMotor.setBounds(108, 198, 86, 20);
+		contentPane.add(txtNumeroMotor);
 		
 		txtCategoria = new JTextField();
 		txtCategoria.setColumns(10);
@@ -94,12 +95,12 @@ public class FrmVehiculo extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Vehiculo cr = new Vehiculo();
-				cr.create(Integer.parseInt(txtMatricula.getText()), Integer.parseInt(txtPlaca.getText()), txtMarca.getText(), Integer.parseInt(txtPuestos.getText()), txtModelo.getText(), txtNumeroPromotor.getText(), txtCategoria.getText(), Integer.parseInt(txtIdTipo.getText()));
+				
+				cr.create(Integer.parseInt(txtMatricula.getText()), Integer.parseInt(txtPlaca.getText()), txtMarca.getText(), Integer.parseInt(txtPuestos.getText()), txtModelo.getText(), txtNumeroMotor.getText(), txtCategoria.getText(), Integer.parseInt(txtIdTipo.getText()));
 				
 			}
 		});
-		btnNewButton.setBounds(231, 136, 110, 52);
+		btnNewButton.setBounds(231, 125, 104, 31);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("matricula:");
@@ -138,6 +139,15 @@ public class FrmVehiculo extends JFrame {
 		txtIdTipo.setColumns(10);
 		txtIdTipo.setBounds(268, 43, 86, 20);
 		contentPane.add(txtIdTipo);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.delete(Integer.parseInt(txtMatricula.getText()));
+			}
+		});
+		btnEliminar.setBounds(231, 73, 104, 31);
+		contentPane.add(btnEliminar);
 	}
-
 }

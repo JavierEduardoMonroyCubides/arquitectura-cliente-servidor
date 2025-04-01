@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import model.Cliente;
+
 import model.Medio;
 
 public class FrmMedio extends JFrame {
@@ -20,6 +20,8 @@ public class FrmMedio extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtIdTipoMedio;
+	private JTextField txtIdMedio;
+	Medio cr = new Medio();
 	/**
 	 * Launch the application.
 	 */
@@ -59,11 +61,11 @@ public class FrmMedio extends JFrame {
 		txtIdTipoMedio.setBounds(108, 105, 86, 20);
 		contentPane.add(txtIdTipoMedio);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("guardar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Medio cr = new Medio();
+				
 				cr.create(txtNombre.getText(),Integer.parseInt(txtIdTipoMedio.getText()));
 			}
 		});
@@ -77,6 +79,35 @@ public class FrmMedio extends JFrame {
 		JLabel lblCorreo = new JLabel("idtipomedio:");
 		lblCorreo.setBounds(38, 108, 60, 14);
 		contentPane.add(lblCorreo);
+		
+		JLabel lblIdmedio = new JLabel("IdMedio:");
+		lblIdmedio.setBounds(53, 46, 60, 14);
+		contentPane.add(lblIdmedio);
+		
+		txtIdMedio = new JTextField();
+		txtIdMedio.setColumns(10);
+		txtIdMedio.setBounds(108, 43, 86, 20);
+		contentPane.add(txtIdMedio);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.delete(Integer.parseInt(txtIdMedio.getText()));
+			}
+		});
+		btnEliminar.setBounds(236, 30, 112, 34);
+		contentPane.add(btnEliminar);
+		
+		JButton btnUpdate = new JButton("update");
+		btnUpdate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdMedio.getText()), txtNombre.getText(),Integer.parseInt(txtIdTipoMedio.getText()));
+			}
+		});
+		btnUpdate.setBounds(236, 122, 112, 34);
+		contentPane.add(btnUpdate);
 	}
 
 }

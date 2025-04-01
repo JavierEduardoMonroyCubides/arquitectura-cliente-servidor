@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmAgencia extends JFrame {
 
@@ -24,7 +27,9 @@ public class FrmAgencia extends JFrame {
 	private JTextField txtDireccion;
 	private JTextField txtWeb;
 	private JTextField txtIdCompañia;
-
+	Agencias cr = new Agencias();
+	private JTextField txtIdAgencia;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -89,12 +94,12 @@ public class FrmAgencia extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				Agencias cr = new Agencias();
+				
 				cr.create(txtNombre.getText(), txtCorreo.getText(), txtTelefono.getText(), txtDireccion.getText(), txtWeb.getText(), Integer.parseInt(txtIdCompañia.getText()));
 				
 			}
 		});
-		btnNewButton.setBounds(249, 67, 111, 35);
+		btnNewButton.setBounds(254, 67, 111, 35);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
@@ -120,5 +125,40 @@ public class FrmAgencia extends JFrame {
 		JLabel lblIdcompania = new JLabel("Idcompañia:");
 		lblIdcompania.setBounds(29, 232, 69, 14);
 		contentPane.add(lblIdcompania);
+		
+		JButton btnEliminar = new JButton("");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnEliminar.setIcon(new ImageIcon("C:\\Users\\APRENDIZ\\Downloads\\8666597_trash_2_icon (1).png"));
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.delete(Integer.parseInt(txtIdAgencia.getText()));
+			}
+		});
+		btnEliminar.setBounds(272, 105, 72, 47);
+		contentPane.add(btnEliminar);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("idagencia:");
+		lblNewLabel_1_1.setBounds(27, 46, 62, 14);
+		contentPane.add(lblNewLabel_1_1);
+		
+		txtIdAgencia = new JTextField();
+		txtIdAgencia.setColumns(10);
+		txtIdAgencia.setBounds(108, 43, 86, 20);
+		contentPane.add(txtIdAgencia);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cr.update(Integer.parseInt(txtIdAgencia.getText()),txtNombre.getText(), txtCorreo.getText(), txtTelefono.getText(), txtDireccion.getText(), txtWeb.getText(), Integer.parseInt(txtIdCompañia.getText()));
+			}
+		});
+		
+		
+		btnActualizar.setBounds(260, 152, 94, 35);
+		contentPane.add(btnActualizar);
 	}
 }

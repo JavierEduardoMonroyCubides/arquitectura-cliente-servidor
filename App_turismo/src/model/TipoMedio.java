@@ -13,6 +13,7 @@ public class TipoMedio {
 	
 	public String nombre;
 	public String observacion;
+	public int idtipomedio;
 	Conexion conector = new Conexion();
 	
 	public TipoMedio(String nombre, String observacion) {
@@ -63,5 +64,34 @@ public class TipoMedio {
 				System.out.println(e.getMessage());
 			}
 		}
+	
+	public void delete(int idtipomedio) {
+		
+		
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+		
+		String script = "delete from tbltipomedio where idtipomedio  = ?";
+		
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion 
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+			
+			//parametrizar el campo
+			pst.setInt(1, idtipomedio);
+			
+			// confirmar la operacion
+			int resp = JOptionPane.showConfirmDialog(null, "¿desea eliminar esta fila?");
+			
+			if(resp == JOptionPane.OK_OPTION) {
+				pst.executeUpdate();
+				JOptionPane.showConfirmDialog(null, "fila eliminada");
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	
 }

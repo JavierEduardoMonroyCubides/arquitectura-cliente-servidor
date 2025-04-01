@@ -27,6 +27,8 @@ public class FrmPromotor extends JFrame {
 	private JTextField txtCorreoCorp;
 	private JTextField txtFechaNacimiento;
 	private JTextField txtTelefono;
+	Promotor cr = new Promotor();
+	private JTextField txtIdPromotores;
 	/**
 	 * Launch the application.
 	 */
@@ -86,11 +88,11 @@ public class FrmPromotor extends JFrame {
 		txtCorreoPersonal.setBounds(98, 201, 86, 20);
 		contentPane.add(txtCorreoPersonal);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("guardar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Promotor cr = new Promotor();
+				
 				cr.create(txtNombre.getText(), txtApellido.getText(), Integer.parseInt(txtTipoDocumento.getText()), Integer.parseInt(txtDocumento.getText()), txtDireccion.getText(), txtCorreoPersonal.getText(),
 						txtCorreoCorp.getText(), txtFechaNacimiento.getText(), txtTelefono.getText());
 				
@@ -149,6 +151,25 @@ public class FrmPromotor extends JFrame {
 		txtTelefono.setColumns(10);
 		txtTelefono.setBounds(286, 102, 86, 20);
 		contentPane.add(txtTelefono);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("IdPromotores: ");
+		lblNewLabel_1_1.setBounds(16, 24, 80, 14);
+		contentPane.add(lblNewLabel_1_1);
+		
+		txtIdPromotores = new JTextField();
+		txtIdPromotores.setColumns(10);
+		txtIdPromotores.setBounds(98, 21, 86, 20);
+		contentPane.add(txtIdPromotores);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.delete(Integer.parseInt(txtIdPromotores.getText()));
+			}
+		});
+		btnEliminar.setBounds(238, 200, 110, 37);
+		contentPane.add(btnEliminar);
 	}
 
 }

@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import model.Operador;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmOperador extends JFrame {
 
@@ -25,6 +27,8 @@ public class FrmOperador extends JFrame {
 	private JTextField txtCorreo;
 	private JTextField txtTelefono;
 	private JTextField txtMatricula;
+	private JTextField txtIdOperador;
+	Operador cr = new Operador();
 	/**
 	 * Launch the application.
 	 */
@@ -84,17 +88,16 @@ contentPane.setLayout(null);
 		txtCorreo.setBounds(120, 201, 86, 20);
 		contentPane.add(txtCorreo);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Operador cr = new Operador();
+		JButton btnNewButton = new JButton("guardar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				cr.create(Integer.parseInt(txtTipoDocumento.getText()),Integer.parseInt(txtDocumento.getText()), txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(),
 						txtCorreo.getText(), txtTelefono.getText(), Integer.parseInt(txtMatricula.getText()));
 				
-				
-				
 			}
+		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			
 		});
 		btnNewButton.setBounds(241, 104, 110, 29);
 		contentPane.add(btnNewButton);
@@ -140,5 +143,36 @@ contentPane.setLayout(null);
 		txtMatricula.setColumns(10);
 		txtMatricula.setBounds(265, 74, 86, 20);
 		contentPane.add(txtMatricula);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("IdOperador:");
+		lblNewLabel_1_1.setBounds(34, 229, 76, 14);
+		contentPane.add(lblNewLabel_1_1);
+		
+		txtIdOperador = new JTextField();
+		txtIdOperador.setColumns(10);
+		txtIdOperador.setBounds(120, 226, 86, 20);
+		contentPane.add(txtIdOperador);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cr.delete(Integer.parseInt(txtIdOperador.getText()));
+			}
+		});
+		
+	
+		btnEliminar.setBounds(241, 138, 110, 29);
+		contentPane.add(btnEliminar);
+		
+		JButton btnUpdate = new JButton("update");
+		btnUpdate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdOperador.getText()), Integer.parseInt(txtTipoDocumento.getText()),Integer.parseInt(txtDocumento.getText()), txtNombre.getText(), txtApellido.getText(), txtDireccion.getText(),
+						txtCorreo.getText(), txtTelefono.getText(), Integer.parseInt(txtMatricula.getText()));
+			}
+		});
+		btnUpdate.setBounds(241, 170, 110, 29);
+		contentPane.add(btnUpdate);
 	}
 }

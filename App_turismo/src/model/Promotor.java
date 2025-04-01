@@ -20,6 +20,7 @@ public class Promotor {
 	public String correocorp;
 	public String fechanacimiento; 
 	public String telefono;
+	public int idpromotor;
 	Conexion conector = new Conexion();
 	
 	public Promotor(String nombre, String apellido, int tipodocumento, int documento, String direccion,
@@ -128,5 +129,33 @@ public class Promotor {
 			}
 		}
 	
+	public void delete(int idpromotor) {
+		
+		
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+		
+		String script = "delete from tblpromotores where idpromotor  = ?";
+		
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion 
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+			
+			//parametrizar el campo
+			pst.setInt(1, idpromotor);
+			
+			// confirmar la operacion
+			int resp = JOptionPane.showConfirmDialog(null, "¿desea eliminar esta fila?");
+			
+			if(resp == JOptionPane.OK_OPTION) {
+				pst.executeUpdate();
+				JOptionPane.showConfirmDialog(null, "fila eliminada");
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	
 }

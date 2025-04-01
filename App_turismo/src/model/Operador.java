@@ -19,6 +19,7 @@ public class Operador {
 	public String correo;
 	public String telefono;
 	public int matricula;
+	public int idoperador;
 	Conexion conector = new Conexion();
 	
 	public Operador(int tipodocumento, int documento, String nombre, String apellido, String direccion, String correo,
@@ -121,5 +122,72 @@ public class Operador {
 			}
 		}
 	
+	public void delete(int idoperador) {
+		
+		
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+		
+		String script = "delete from tbloperador where idoperador  = ?";
+		
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion 
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+			
+			//parametrizar el campo
+			pst.setInt(1, idoperador);
+			
+			// confirmar la operacion
+			int resp = JOptionPane.showConfirmDialog(null, "¿desea eliminar esta fila?");
+			
+			if(resp == JOptionPane.OK_OPTION) {
+				pst.executeUpdate();
+				JOptionPane.showConfirmDialog(null, "fila eliminada");
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	
+	
+	public void update(int idoperador ,int tipodocumento, int documento, String nombre, String apellido, String direccion, String correo,
+			String telefono, int matricula) {
+		
+		
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+		
+		String script = "update tbloperador set tipodocumento = ?, documento = ?, nombre = ?, apellido = ?, direccion = ?, correo = ?, telefono = ?, matricula = ?  where idoperador = ?;";
+		
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+			
+			//parametrizar el campo
+		
+			pst.setInt(1, tipodocumento);
+			pst.setInt(2, documento);
+			pst.setString(3, nombre);
+			pst.setString(4, apellido);
+			pst.setString(5, direccion);
+			pst.setString(6, correo);
+			pst.setString(7, telefono);
+			pst.setInt(8, matricula);
+			pst.setInt(9, idoperador);
+			
+			// confirmar la operacion
+			int resp = JOptionPane.showConfirmDialog(null, "¿desea actualizar esta fila?");
+			
+			if(resp == JOptionPane.OK_OPTION) {
+				pst.executeUpdate();
+				JOptionPane.showConfirmDialog(null, "fila actualizada");
+			}
+			
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }
