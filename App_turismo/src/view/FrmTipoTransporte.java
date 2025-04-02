@@ -103,6 +103,16 @@ public class FrmTipoTransporte extends JFrame {
 		});
 		btnEliminar.setBounds(258, 104, 95, 38);
 		contentPane.add(btnEliminar);
+		
+		JButton btnActualizar = new JButton("actualizar");
+		btnActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdTipoTransporte.getText()), txtNombre.getText(), txtObservacion.getText());
+			}
+		});
+		btnActualizar.setBounds(258, 147, 95, 38);
+		contentPane.add(btnActualizar);
 	}
 
 }

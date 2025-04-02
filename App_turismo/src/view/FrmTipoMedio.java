@@ -99,5 +99,15 @@ public class FrmTipoMedio extends JFrame {
 		});
 		btnEliminar.setBounds(237, 111, 108, 31);
 		contentPane.add(btnEliminar);
+		
+		JButton btnActualizar = new JButton("actualizar");
+		btnActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdTipoMedio.getText()), txtNombre.getText(), txtObservacion.getText());
+			}
+		});
+		btnActualizar.setBounds(237, 153, 108, 31);
+		contentPane.add(btnActualizar);
 	}
 }

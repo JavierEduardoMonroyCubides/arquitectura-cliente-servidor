@@ -168,8 +168,18 @@ public class FrmPromotor extends JFrame {
 				cr.delete(Integer.parseInt(txtIdPromotores.getText()));
 			}
 		});
-		btnEliminar.setBounds(238, 200, 110, 37);
+		btnEliminar.setBounds(194, 200, 110, 37);
 		contentPane.add(btnEliminar);
+		
+		JButton btnActualizar = new JButton("actualizar");
+		btnActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtIdPromotores.getText()),txtNombre.getText(), txtApellido.getText(), Integer.parseInt(txtTipoDocumento.getText()), Integer.parseInt(txtDocumento.getText()), txtDireccion.getText(), txtCorreoPersonal.getText(),
+						txtCorreoCorp.getText(), txtFechaNacimiento.getText(), txtTelefono.getText());
+			}
+		});
+		btnActualizar.setBounds(324, 200, 110, 37);
+		contentPane.add(btnActualizar);
 	}
-
 }

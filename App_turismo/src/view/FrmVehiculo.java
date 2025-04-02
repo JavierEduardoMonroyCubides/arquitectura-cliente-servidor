@@ -19,7 +19,6 @@ public class FrmVehiculo extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtMatricula;
-	private JTextField txtPlaca;
 	private JTextField txtMarca;
 	private JTextField txtPuestos;
 	private JTextField txtModelo;
@@ -57,14 +56,9 @@ public class FrmVehiculo extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtMatricula = new JTextField();
-		txtMatricula.setBounds(108, 43, 86, 20);
+		txtMatricula.setBounds(108, 74, 86, 20);
 		contentPane.add(txtMatricula);
 		txtMatricula.setColumns(10);
-		
-		txtPlaca = new JTextField();
-		txtPlaca.setColumns(10);
-		txtPlaca.setBounds(108, 74, 86, 20);
-		contentPane.add(txtPlaca);
 		
 		txtMarca = new JTextField();
 		txtMarca.setColumns(10);
@@ -96,7 +90,7 @@ public class FrmVehiculo extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				cr.create(Integer.parseInt(txtMatricula.getText()), Integer.parseInt(txtPlaca.getText()), txtMarca.getText(), Integer.parseInt(txtPuestos.getText()), txtModelo.getText(), txtNumeroMotor.getText(), txtCategoria.getText(), Integer.parseInt(txtIdTipo.getText()));
+				cr.create(Integer.parseInt(txtMatricula.getText()), txtMarca.getText(), Integer.parseInt(txtPuestos.getText()), txtModelo.getText(), txtNumeroMotor.getText(), txtCategoria.getText(), Integer.parseInt(txtIdTipo.getText()));
 				
 			}
 		});
@@ -104,12 +98,8 @@ public class FrmVehiculo extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("matricula:");
-		lblNewLabel.setBounds(25, 46, 62, 14);
+		lblNewLabel.setBounds(25, 77, 62, 14);
 		contentPane.add(lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("placa:");
-		lblNewLabel_1.setBounds(25, 77, 46, 14);
-		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblCorreo = new JLabel("marca:");
 		lblCorreo.setBounds(25, 108, 46, 14);
@@ -149,5 +139,15 @@ public class FrmVehiculo extends JFrame {
 		});
 		btnEliminar.setBounds(231, 73, 104, 31);
 		contentPane.add(btnEliminar);
+		
+		JButton btnActualizar = new JButton("actualizar");
+		btnActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.update(Integer.parseInt(txtMatricula.getText()), txtMarca.getText(), Integer.parseInt(txtPuestos.getText()), txtModelo.getText(), txtNumeroMotor.getText(), txtCategoria.getText(), Integer.parseInt(txtIdTipo.getText()));
+			}
+		});
+		btnActualizar.setBounds(231, 166, 104, 31);
+		contentPane.add(btnActualizar);
 	}
 }
