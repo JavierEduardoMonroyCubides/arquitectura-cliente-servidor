@@ -15,6 +15,8 @@ public class Conexion {
 		}catch (SQLException e) {
 			System.out.println("error:" + e.getMessage());
 		}
+		
 		return connection;//retorna la conexion abierta con la BD
 	}
+	
 }

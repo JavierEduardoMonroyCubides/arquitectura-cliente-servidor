@@ -2,9 +2,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import controler.Conexion;
 
@@ -15,7 +17,7 @@ public class Vehiculo {
 	public String marca;
 	public int puestos;
 	public String modelo;
-	public String numepromotor;
+	public String numeromotor;
 	public String categoria;
 	public int idtipo;
 
@@ -29,7 +31,7 @@ public class Vehiculo {
 		this.marca = marca;
 		this.puestos = puestos;
 		this.modelo = modelo;
-		this.numepromotor = numepromotor;
+		this.numeromotor = numepromotor;
 		this.categoria = categoria;
 		this.idtipo = idtipo;
 	}
@@ -79,11 +81,11 @@ public class Vehiculo {
 	}
 
 	public String getNumepromotor() {
-		return numepromotor;
+		return numeromotor;
 	}
 
 	public void setNumepromotor(String numepromotor) {
-		this.numepromotor = numepromotor;
+		this.numeromotor = numepromotor;
 	}
 
 	public String getCategoria() {
@@ -190,6 +192,38 @@ public class Vehiculo {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void readOne(int matricula,JTextField marca, JTextField puestos, JTextField modelo, JTextField numeromotor, JTextField categoria, JTextField idtipo) {
+
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+
+		String script = "select * from tblvehiculo where matricula = ?;";
+
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+
+			// parametrizar el campo
+			pst.setInt(1, matricula);
+			
+
+			ResultSet rs = pst.executeQuery();//almacenar temporal
+			
+			while (rs.next()) {
+				marca.setText(rs.getString(2));
+				puestos.setText(rs.getString(3));
+				modelo.setText(rs.getString(4));
+				numeromotor.setText(rs.getString(5));
+				categoria.setText(rs.getString(6));
+				idtipo.setText(rs.getString(7));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

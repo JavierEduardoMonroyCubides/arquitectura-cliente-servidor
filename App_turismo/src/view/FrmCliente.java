@@ -103,7 +103,7 @@ contentPane.setLayout(null);
 				
 			}
 		});
-		btnNewButton.setBounds(261, 204, 71, 35);
+		btnNewButton.setBounds(230, 180, 71, 35);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
@@ -182,7 +182,7 @@ contentPane.setLayout(null);
 			}
 		});
 		btnEliminar.setIcon(new ImageIcon("C:\\Users\\APRENDIZ\\Downloads\\8666597_trash_2_icon (1).png"));
-		btnEliminar.setBounds(212, 204, 39, 35);
+		btnEliminar.setBounds(240, 215, 46, 35);
 		contentPane.add(btnEliminar);
 		
 		txtIdCliente = new JTextField();
@@ -195,6 +195,10 @@ contentPane.setLayout(null);
 		contentPane.add(lblIdcliente);
 		
 		JButton btnActualzar = new JButton("actualzar");
+		btnActualzar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnActualzar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -202,7 +206,17 @@ contentPane.setLayout(null);
 						txtFechaNacimiento.getText(), txtCorreo.getText(), txtEstadoCivil.getText(), txtDireccion.getText(), txtTelefonico.getText());
 			}
 		});
-		btnActualzar.setBounds(342, 204, 82, 35);
+		btnActualzar.setBounds(314, 215, 82, 35);
 		contentPane.add(btnActualzar);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdCliente.getText()), txtTipoDocumento, txtDocumento, txtNombre, txtApellido, txtEps, txtAlergias, txtFechaNacimiento, txtCorreo, txtEstadoCivil, txtDireccion, txtTelefonico);
+			}
+		});
+		btnBuscar.setBounds(320, 180, 71, 35);
+		contentPane.add(btnBuscar);
 	}
 }

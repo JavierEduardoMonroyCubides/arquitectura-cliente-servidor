@@ -151,5 +151,15 @@ public class FrmCompania extends JFrame {
 		});
 		btnUpdate.setBounds(261, 176, 110, 29);
 		contentPane.add(btnUpdate);
+		
+		JButton btnActualizar = new JButton("buscar");
+		btnActualizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdCompania.getText()), txtRazonSocial, txtDireccion, txtTelefono, txtFechaCreacion, txtCorreo, txtWeb);
+			}
+		});
+		btnActualizar.setBounds(261, 36, 110, 29);
+		contentPane.add(btnActualizar);
 	}
 }

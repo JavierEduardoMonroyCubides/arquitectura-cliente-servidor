@@ -113,6 +113,16 @@ public class FrmTipoTransporte extends JFrame {
 		});
 		btnActualizar.setBounds(258, 147, 95, 38);
 		contentPane.add(btnActualizar);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdTipoTransporte.getText()), txtNombre, txtObservacion);
+			}
+		});
+		btnBuscar.setBounds(258, 190, 95, 38);
+		contentPane.add(btnBuscar);
 	}
 
 }

@@ -109,5 +109,15 @@ public class FrmTipoMedio extends JFrame {
 		});
 		btnActualizar.setBounds(237, 153, 108, 31);
 		contentPane.add(btnActualizar);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdTipoMedio.getText()), txtNombre, txtObservacion);
+			}
+		});
+		btnBuscar.setBounds(237, 195, 108, 31);
+		contentPane.add(btnBuscar);
 	}
 }

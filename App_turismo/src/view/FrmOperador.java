@@ -174,5 +174,15 @@ contentPane.setLayout(null);
 		});
 		btnUpdate.setBounds(241, 170, 110, 29);
 		contentPane.add(btnUpdate);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdOperador.getText()), txtTipoDocumento, txtDocumento, txtNombre, txtApellido, txtDireccion, txtCorreo, txtTelefono, txtMatricula);
+			}
+		});
+		btnBuscar.setBounds(241, 200, 110, 29);
+		contentPane.add(btnBuscar);
 	}
 }

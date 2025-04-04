@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import model.Cliente;
 import model.Promotor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmPromotor extends JFrame {
 
@@ -98,7 +100,7 @@ public class FrmPromotor extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(238, 150, 110, 37);
+		btnNewButton.setBounds(194, 162, 110, 37);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre:");
@@ -181,5 +183,19 @@ public class FrmPromotor extends JFrame {
 		});
 		btnActualizar.setBounds(324, 200, 110, 37);
 		contentPane.add(btnActualizar);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdPromotores.getText()), txtNombre, txtApellido, txtTipoDocumento, txtDocumento, txtDireccion, txtCorreoPersonal, txtCorreoCorp, txtFechaNacimiento, txtTelefono);
+			}
+		});
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBuscar.setBounds(324, 162, 110, 37);
+		contentPane.add(btnBuscar);
 	}
 }

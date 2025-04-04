@@ -26,7 +26,7 @@ public class FrmAgencia extends JFrame {
 	private JTextField txtTelefono;
 	private JTextField txtDireccion;
 	private JTextField txtWeb;
-	private JTextField txtIdCompañia;
+	private JTextField txtIdCompania;
 	Agencias cr = new Agencias();
 	private JTextField txtIdAgencia;
 	
@@ -84,10 +84,10 @@ public class FrmAgencia extends JFrame {
 		txtWeb.setBounds(108, 198, 86, 20);
 		contentPane.add(txtWeb);
 		
-		txtIdCompañia = new JTextField();
-		txtIdCompañia.setColumns(10);
-		txtIdCompañia.setBounds(108, 229, 86, 20);
-		contentPane.add(txtIdCompañia);
+		txtIdCompania = new JTextField();
+		txtIdCompania.setColumns(10);
+		txtIdCompania.setBounds(108, 229, 86, 20);
+		contentPane.add(txtIdCompania);
 		
 		JButton btnNewButton = new JButton("guardar");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -95,7 +95,7 @@ public class FrmAgencia extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				
-				cr.create(txtNombre.getText(), txtCorreo.getText(), txtTelefono.getText(), txtDireccion.getText(), txtWeb.getText(), Integer.parseInt(txtIdCompañia.getText()));
+				cr.create(txtNombre.getText(), txtCorreo.getText(), txtTelefono.getText(), txtDireccion.getText(), txtWeb.getText(), Integer.parseInt(txtIdCompania.getText()));
 				
 			}
 		});
@@ -153,12 +153,22 @@ public class FrmAgencia extends JFrame {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cr.update(Integer.parseInt(txtIdAgencia.getText()),txtNombre.getText(), txtCorreo.getText(), txtTelefono.getText(), txtDireccion.getText(), txtWeb.getText(), Integer.parseInt(txtIdCompañia.getText()));
+				cr.update(Integer.parseInt(txtIdAgencia.getText()),txtNombre.getText(), txtCorreo.getText(), txtTelefono.getText(), txtDireccion.getText(), txtWeb.getText(), Integer.parseInt(txtIdCompania.getText()));
 			}
 		});
 		
 		
 		btnActualizar.setBounds(260, 152, 94, 35);
 		contentPane.add(btnActualizar);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdAgencia.getText()), txtNombre, txtCorreo, txtTelefono, txtDireccion, txtWeb, txtIdCompania);
+			}
+		});
+		btnBuscar.setBounds(254, 191, 111, 35);
+		contentPane.add(btnBuscar);
 	}
 }

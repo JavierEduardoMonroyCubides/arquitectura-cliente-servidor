@@ -2,9 +2,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import controler.Conexion;
 
@@ -215,7 +217,7 @@ public class Paquete {
 		}
 	}
 
-	public void update(int codigo ,int iddestino, int idorigen, String fechaventa, String horaventa, String horasalida,
+	public void update(int codigo, int iddestino, int idorigen, String fechaventa, String horaventa, String horasalida,
 			String fechaejecucion, String observaciones, int idagencia, int matricula, int idpromotor, int idcliente,
 			int idmedio, String precio) {
 
@@ -255,5 +257,46 @@ public class Paquete {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void readOne(int codigo, JTextField iddestino, JTextField idorigen, JTextField fechaventa, JTextField horaventa, JTextField horasalida,
+			JTextField fechaejecucion, JTextField observaciones, JTextField idagencia, JTextField matricula, JTextField idpromotor, JTextField idcliente,
+			JTextField idmedio, JTextField precio) {
+
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+
+		String script = "select * from tblpaquete where codigo = ?;";
+
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+
+			// parametrizar el campo
+			pst.setInt(1, codigo);
+			
+
+			ResultSet rs = pst.executeQuery();//almacenar temporal
+			
+			while (rs.next()) {
+				iddestino.setText(rs.getString(2));
+				idorigen.setText(rs.getString(3));
+				fechaventa.setText(rs.getString(4));
+				horaventa.setText(rs.getString(5));
+				horasalida.setText(rs.getString(6));
+				fechaejecucion.setText(rs.getString(7));
+				observaciones.setText(rs.getString(8));
+				idagencia.setText(rs.getString(9));
+				matricula.setText(rs.getString(10));
+				idpromotor.setText(rs.getString(11));
+				idcliente.setText(rs.getString(12));
+				idmedio.setText(rs.getString(13));
+				precio.setText(rs.getString(14));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 }

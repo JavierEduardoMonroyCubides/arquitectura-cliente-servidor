@@ -113,7 +113,7 @@ public class FrmVehiculo extends JFrame {
 		lblDireccion.setBounds(25, 170, 60, 14);
 		contentPane.add(lblDireccion);
 		
-		JLabel lblWeb = new JLabel("numepromotor:");
+		JLabel lblWeb = new JLabel("numero de motor:");
 		lblWeb.setBounds(25, 201, 86, 14);
 		contentPane.add(lblWeb);
 		
@@ -149,5 +149,15 @@ public class FrmVehiculo extends JFrame {
 		});
 		btnActualizar.setBounds(231, 166, 104, 31);
 		contentPane.add(btnActualizar);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtMatricula.getText()), txtMarca, txtPuestos, txtModelo, txtNumeroMotor, txtCategoria, txtIdTipo);
+			}
+		});
+		btnBuscar.setBounds(231, 201, 104, 31);
+		contentPane.add(btnBuscar);
 	}
 }

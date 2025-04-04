@@ -2,9 +2,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import controler.Conexion;
 
@@ -169,6 +171,39 @@ public class Compania {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void readOne(int idcompania, JTextField razonsocial, JTextField direccion, JTextField telefono, JTextField fechacreacion, JTextField correo, JTextField web) {
+
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+
+		String script = "select * from tblcompania where idcompania = ?;";
+
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+
+			// parametrizar el campo
+			pst.setInt(1, idcompania);
+			
+
+			ResultSet rs = pst.executeQuery();//almacenar temporal
+			
+			while (rs.next()) {
+				razonsocial.setText(rs.getString(2));
+				direccion.setText(rs.getString(3));
+				telefono.setText(rs.getString(4));
+				fechacreacion.setText(rs.getString(5));
+				correo.setText(rs.getString(6));
+				web.setText(rs.getString(7));
+				
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

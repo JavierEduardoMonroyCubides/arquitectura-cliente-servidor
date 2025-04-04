@@ -58,7 +58,7 @@ public class FrmPaquete extends JFrame {
 	public FrmPaquete() {
 		setTitle("Paquete");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 524, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -211,7 +211,7 @@ public class FrmPaquete extends JFrame {
 				cr.delete(Integer.parseInt(txtCodigo.getText()));
 			}
 		});
-		btnEliminar.setBounds(267, 10, 108, 26);
+		btnEliminar.setBounds(390, 226, 108, 26);
 		contentPane.add(btnEliminar);
 		
 		JButton btnUpdate = new JButton("update");
@@ -223,8 +223,18 @@ public class FrmPaquete extends JFrame {
 						Integer.parseInt(txtIdMedio.getText()), txtPrecio.getText());
 			}
 		});
-		btnUpdate.setBounds(210, 229, 79, 21);
+		btnUpdate.setBounds(393, 262, 79, 21);
 		contentPane.add(btnUpdate);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtCodigo.getText()), txtIdDestino, txtIdOrigen, txtFechaVenta, txtHoraVenta, txtHoraSalida, txtFechaEjecucion, txtObservaciones, txtIdAgencia, txtMatricula, txtIdPromotor, txtIdCliente, txtIdMedio, txtPrecio);
+			}
+		});
+		btnBuscar.setBounds(299, 262, 86, 21);
+		contentPane.add(btnBuscar);
 	}
 
 }

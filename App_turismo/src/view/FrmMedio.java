@@ -108,6 +108,16 @@ public class FrmMedio extends JFrame {
 		});
 		btnUpdate.setBounds(236, 122, 112, 34);
 		contentPane.add(btnUpdate);
+		
+		JButton btnBuscar = new JButton("buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cr.readOne(Integer.parseInt(txtIdMedio.getText()), txtNombre, txtIdTipoMedio);
+			}
+		});
+		btnBuscar.setBounds(236, 163, 112, 34);
+		contentPane.add(btnBuscar);
 	}
 
 }

@@ -2,9 +2,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import controler.Conexion;
 
@@ -196,6 +198,42 @@ public class Promotor {
 		}catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void readOne(int idpromotor, JTextField nombre, JTextField apellido, JTextField tipodocumento, JTextField documento, JTextField direccion,
+			JTextField correopersonal, JTextField correocorp, JTextField fechanacimiento, JTextField telefono) {
+
+		Connection dbConnection = null;
+		PreparedStatement pst = null; // preparar la trx
+
+		String script = "select * from tblpromotores where idpromotor = ?;";
+
+		try {
+			dbConnection = conector.conectarDB(); // abrir la conexion
+			pst = dbConnection.prepareStatement(script); // abrir el buffer
+
+			// parametrizar el campo
+			pst.setInt(1, idpromotor);
+			
+
+			ResultSet rs = pst.executeQuery();//almacenar temporal
+			
+			while (rs.next()) {
+				nombre.setText(rs.getString(2));
+				apellido.setText(rs.getString(3));
+				tipodocumento.setText(rs.getString(4));
+				documento.setText(rs.getString(5));
+				direccion.setText(rs.getString(6));
+				correopersonal.setText(rs.getString(7));
+				correocorp.setText(rs.getString(8));
+				fechanacimiento.setText(rs.getString(9));
+				telefono.setText(rs.getString(10));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 	
 }
