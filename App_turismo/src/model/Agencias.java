@@ -173,7 +173,8 @@ public class Agencias {
 		}
 	}
 
-	public void readOne(int idagencia,JTextField nombre, JTextField correo, JTextField telefono, JTextField direccion, JTextField web, JTextField idCompania) {
+	public void readOne(int idagencia, JTextField nombre, JTextField correo, JTextField telefono, JTextField direccion,
+			JTextField web, JTextField idCompania) {
 
 		Connection dbConnection = null;
 		PreparedStatement pst = null; // preparar la trx
@@ -186,10 +187,9 @@ public class Agencias {
 
 			// parametrizar el campo
 			pst.setInt(1, idagencia);
-			
 
-			ResultSet rs = pst.executeQuery();//almacenar temporal
-			
+			ResultSet rs = pst.executeQuery();// almacenar temporal
+
 			while (rs.next()) {
 				nombre.setText(rs.getString(2));
 				correo.setText(rs.getString(5));
@@ -204,4 +204,5 @@ public class Agencias {
 		}
 
 	}
+
 }
